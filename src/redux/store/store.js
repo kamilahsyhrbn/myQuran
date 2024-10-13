@@ -3,8 +3,10 @@ import { persistStore, persistReducer } from "redux-persist";
 import { thunk } from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 
+import quranReducers from "../reducers/quranReducers";
+
 const rootReducer = combineReducers({
-  //   quran: quranReducers
+  quran: quranReducers,
 });
 
 const persistConfig = {
