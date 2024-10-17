@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   quran: [],
-  surah: [],
   selectedSurah: [],
   tafsirAyah: [],
   selectedAyah: null,
@@ -15,9 +14,6 @@ const quranSlicer = createSlice({
   reducers: {
     setQuran: (state, action) => {
       state.quran = action.payload;
-    },
-    setSurah: (state, action) => {
-      state.surah = action.payload;
     },
     setSelectedSurah: (state, action) => {
       state.selectedSurah = action.payload;
@@ -38,7 +34,6 @@ const quranSlicer = createSlice({
 
 export const {
   setQuran,
-  setSurah,
   setSelectedSurah,
   setTafsirAyah,
   setSelectedAyah,

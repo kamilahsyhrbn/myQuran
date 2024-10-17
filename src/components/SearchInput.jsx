@@ -18,24 +18,24 @@ export default function SearchInput({
   const navigate = useNavigate();
 
   useEffect(() => {
-    const selected = quran.find((surat) => surat?.number === value);
+    const selected = quran.find((surat) => surat?.nomor === value);
     setSelectedSurah(selected || null);
-    setQuery(selected ? `${selected.name_id}` : "");
+    setQuery(selected ? `${selected.namaLatin}` : "");
   }, [value, quran]);
 
   const handleSelect = (surat) => {
     setSelectedSurah(surat);
-    setQuery(surat ? `${surat.name_id}` : "");
+    setQuery(surat ? `${surat.namaLatin}` : "");
     onChange(surat);
-    dispatch(getSurah(surat?.number));
-    navigate(`/baca-surat/${surat.name_id}`);
+    dispatch(getSurah(surat?.nomor));
+    navigate(`/baca-surat/${surat.namaLatin}`);
   };
 
   const filteredItems =
     query === ""
       ? quran
       : quran.filter((surat) =>
-          surat?.name_id.toLowerCase().includes(query.toLowerCase())
+          surat?.namaLatin.toLowerCase().includes(query.toLowerCase())
         );
 
   return (
@@ -62,7 +62,7 @@ export default function SearchInput({
             >
               {filteredItems.map((surat) => (
                 <Combobox.Option
-                  key={surat.number}
+                  key={surat.nomor}
                   value={surat}
                   className={({ active }) =>
                     `cursor-pointer select-none relative py-2 pl-3 pr-9
@@ -76,7 +76,7 @@ export default function SearchInput({
                           selected && "font-semibold"
                         }`}
                       >
-                        {surat.name_id}
+                        {surat.namaLatin}
                       </span>
                       {selected && (
                         <span
