@@ -114,8 +114,12 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="#"
-                className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0"
+                href="/asmaul-husna"
+                className={`block py-2 px-3 rounded md:p-0 ${
+                  location.pathname === "/asmaul-husna"
+                    ? "text-white bg-primary md:bg-transparent md:text-primary font-semibold"
+                    : "hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary"
+                }`}
               >
                 Asmaul Husna
               </a>

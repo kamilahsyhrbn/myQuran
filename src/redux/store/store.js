@@ -4,9 +4,11 @@ import { thunk } from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 
 import quranReducers from "../reducers/quranReducers";
+import asmaReducers from "../reducers/asmaReducers";
 
 const rootReducer = combineReducers({
   quran: quranReducers,
+  asma: asmaReducers,
 });
 
 const persistConfig = {
