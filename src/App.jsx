@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import BtnScrollUp from "./components/BtnScrollUp";
 import Footer from "./components/Footer";
 import AsmaulHusna from "./pages/Asmaul Husna/AsmaulHusna";
+import Doa from "./pages/Doa/Doa";
+import BacaDoa from "./pages/Doa/BacaDoa";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/" element={<Quran />} />
         <Route path="/baca-surat/:name_id" element={<BacaSurat />} />
         <Route path="/asmaul-husna" element={<AsmaulHusna />} />
+        <Route path="/doa" element={<Doa />} />
+        <Route path="/baca-doa/:doa" element={<BacaDoa />} />
       </Routes>
 
       <BtnScrollUp />

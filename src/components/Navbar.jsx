@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../assets/Quran1.png";
-import { useMediaQuery } from "react-responsive";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
-  const isLaptop = useMediaQuery({ minWidth: 1024 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,8 +101,13 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="#"
-                className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0"
+                href="/doa"
+                className={`block py-2 px-3 rounded md:p-0 ${
+                  location.pathname === "/doa" ||
+                  location.pathname === "/baca-doa/:doa"
+                    ? "text-white bg-primary md:bg-transparent md:text-primary font-semibold"
+                    : "hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary"
+                }`}
               >
                 Doa
               </a>

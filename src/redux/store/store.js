@@ -5,10 +5,12 @@ import storage from "redux-persist/lib/storage";
 
 import quranReducers from "../reducers/quranReducers";
 import asmaReducers from "../reducers/asmaReducers";
+import doaReducers from "../reducers/DoaReducers";
 
 const rootReducer = combineReducers({
   quran: quranReducers,
   asma: asmaReducers,
+  doa: doaReducers,
 });
 
 const persistConfig = {
