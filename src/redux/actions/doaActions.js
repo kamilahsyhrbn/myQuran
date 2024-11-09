@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setDoa, setIsLoading, setListDoa } from "../reducers/DoaReducers";
+import { setDoa, setIsLoading, setListDoa } from "../reducers/doaReducers";
 
 export const getListDoa = () => async (dispatch) => {
   dispatch(setIsLoading(true));

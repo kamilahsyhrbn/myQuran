@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import AsmaulHusna from "./pages/Asmaul Husna/AsmaulHusna";
 import Doa from "./pages/Doa/Doa";
 import BacaDoa from "./pages/Doa/BacaDoa";
+import Hadits from "./pages/Hadits/Hadits";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/asmaul-husna" element={<AsmaulHusna />} />
         <Route path="/doa" element={<Doa />} />
         <Route path="/baca-doa/:doa" element={<BacaDoa />} />
+        <Route path="/hadits" element={<Hadits />} />
       </Routes>
 
       <BtnScrollUp />
