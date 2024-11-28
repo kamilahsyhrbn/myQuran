@@ -28,7 +28,6 @@ function App() {
         <Route path="/baca-doa/:doa" element={<BacaDoa />} />
         <Route path="/hadits" element={<Hadits />} />
       </Routes>
-
       <BtnScrollUp />
       <Footer />
     </Router>

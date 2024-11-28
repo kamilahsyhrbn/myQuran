@@ -10,15 +10,26 @@ import {
   IoMdArrowRoundBack,
 } from "react-icons/io";
 import { PiMosque } from "react-icons/pi";
-import { IoBookOutline, IoPlay, IoPause } from "react-icons/io5";
+import {
+  IoBookOutline,
+  IoPlay,
+  IoPause,
+  IoPlaySkipBack,
+  IoPlaySkipForward,
+} from "react-icons/io5";
 import { BsFileText } from "react-icons/bs";
 
 export default function BacaSurat() {
   const selectedSurat = useParams();
-  const { selectedSurah } = useSelector((state) => state.quran);
-  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { selectedSurah } = useSelector((state) => state.quran);
+
+  const [showModal, setShowModal] = useState(false);
+  const [audio, setAudio] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentAyat, setCurrentAyat] = useState(null);
 
   console.log("selectedSurah", selectedSurah);
 
@@ -29,6 +40,70 @@ export default function BacaSurat() {
   useEffect(() => {
     dispatch(getDetailSurah(selectedSurat?.nomor));
   }, [selectedSurat]);
+
+  // Play/Pause toggle
+  const handlePlayPause = (ayat, i) => {
+    if (isPlaying && currentAyat === ayat) {
+      // Pause if currently playing the same ayat
+      if (audio) audio.pause();
+      setIsPlaying(false);
+    } else {
+      // Play new audio
+      if (audio) audio.pause(); // Stop current audio
+      const newAudio = new Audio(ayat.audio[Object.keys(ayat.audio)[0]]);
+      newAudio.play();
+      setAudio(newAudio);
+      setCurrentAyat(ayat);
+      setIsPlaying(true);
+
+      // Handle when the audio ends
+      newAudio.onended = () => {
+        setIsPlaying(false);
+
+        // If there's a next ayat, play it
+        // const currentAyatIndex = selectedSurah?.ayat?.findIndex(
+        //   (item) => item === ayat
+        // );
+        // if (currentAyatIndex !== -1) {
+        //   const nextAyat = selectedSurah?.ayat?.[currentAyatIndex + 1];
+        //   if (nextAyat) {
+        //     handlePlayPause(nextAyat); // Play next ayat
+        //   } else {
+        //     console.log("No more ayat to play.");
+        //   }
+        // }
+      };
+    }
+  };
+
+  // Skip to the previous ayat
+  const handleSkipBack = () => {
+    if (!currentAyat) return;
+
+    const currentIndex = selectedSurah.ayat.findIndex(
+      (a) => a.nomorAyat === currentAyat.nomorAyat
+    );
+    const prevAyat =
+      selectedSurah.ayat[
+        (currentIndex - 1 + selectedSurah.ayat.length) %
+          selectedSurah.ayat.length
+      ];
+
+    handlePlayPause(prevAyat);
+  };
+
+  // Skip to the next ayat
+  const handleSkipForward = () => {
+    if (!currentAyat) return;
+
+    const currentIndex = selectedSurah.ayat.findIndex(
+      (a) => a.nomorAyat === currentAyat.nomorAyat
+    );
+    const nextAyat =
+      selectedSurah.ayat[(currentIndex + 1) % selectedSurah.ayat.length];
+
+    handlePlayPause(nextAyat);
+  };
 
   return (
     <div
@@ -126,6 +201,7 @@ export default function BacaSurat() {
           </div>
         </div>
 
+        {/* SURAH CONTENT */}
         <div>
           <h2 className="arabic text-center text-4xl my-20" dir="rtl">
             بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
@@ -159,8 +235,15 @@ export default function BacaSurat() {
                   >
                     <BsFileText />
                   </button>
-                  <button className="text-lg text-primary hover:text-tertiary">
-                    <IoPlay />
+                  <button
+                    onClick={() => handlePlayPause(ayat)}
+                    className="text-lg text-primary hover:text-tertiary"
+                  >
+                    {isPlaying && currentAyat === ayat ? (
+                      <IoPause />
+                    ) : (
+                      <IoPlay />
+                    )}
                   </button>
                 </div>
               </div>
@@ -170,7 +253,6 @@ export default function BacaSurat() {
       </div>
 
       {/* MODAL */}
-
       <div
         className={`fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-y-scroll no-scrollbar transition-opacity duration-300  ${
           showModal ? "opacity-100 " : "opacity-0 pointer-events-none"
@@ -222,6 +304,56 @@ export default function BacaSurat() {
           </div>
         </div>
       </div>
+
+      {/* AUDIO PLAYER */}
+      {currentAyat && (
+        <div className="fixed bottom-4 left-4 flex items-center gap-4 bg-white p-4 shadow-lg rounded-lg z-[999999]">
+          <button
+            className="text-lg text-white absolute -top-1 -right-2 bg-tertiary hover:bg-primary p-2 rounded-full"
+            onClick={() => {
+              setCurrentAyat(null), audio?.pause(), setIsPlaying(false);
+            }}
+          >
+            <svg
+              className="w-2 h-2"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 14"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+              />
+            </svg>
+            <span className="sr-only">Close modal</span>
+          </button>
+          <button
+            className="text-lg text-primary hover:text-tertiary"
+            onClick={handleSkipBack}
+          >
+            <IoPlaySkipBack />
+          </button>
+          <button
+            className="text-lg text-primary hover:text-tertiary"
+            onClick={() => handlePlayPause(currentAyat)}
+          >
+            {isPlaying ? <IoPause /> : <IoPlay />}
+          </button>
+          <button
+            className="text-lg text-primary hover:text-tertiary"
+            onClick={handleSkipForward}
+          >
+            <IoPlaySkipForward />
+          </button>
+          <p className="text-primary">
+            Sedang Memutar: Ayat {currentAyat.nomorAyat}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

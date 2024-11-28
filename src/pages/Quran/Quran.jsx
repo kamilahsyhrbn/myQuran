@@ -47,7 +47,6 @@ export default function Quran() {
             <button
               className="bg-primary text-white px-4 py-2 rounded-full hover:bg-tertiary transition-colors duration-300 whitespace-nowrap"
               onClick={() => {
-                dispatch(getDetailSurah("36"));
                 navigate("/baca-surat/36");
               }}
             >
@@ -56,8 +55,7 @@ export default function Quran() {
             <button
               className="bg-primary text-white px-4 py-2 rounded-full hover:bg-tertiary transition-colors duration-300 whitespace-nowrap"
               onClick={() => {
-                dispatch(getDetailSurah("56"));
-                navigate("/baca-surat/Al-Waqi'ah");
+                navigate("/baca-surat/56");
               }}
             >
               Al-Waqiah
@@ -65,8 +63,7 @@ export default function Quran() {
             <button
               className="bg-primary text-white px-4 py-2 rounded-full hover:bg-tertiary transition-colors duration-300 whitespace-nowrap"
               onClick={() => {
-                dispatch(getDetailSurah("67"));
-                navigate("/baca-surat/Al-Mulk");
+                navigate("/baca-surat/67");
               }}
             >
               Al-Mulk
@@ -74,8 +71,7 @@ export default function Quran() {
             <button
               className="bg-primary text-white px-4 py-2 rounded-full hover:bg-tertiary transition-colors duration-300 whitespace-nowrap"
               onClick={() => {
-                dispatch(getDetailSurah("18"));
-                navigate("/baca-surat/Al-Kahf");
+                navigate("/baca-surat/18");
               }}
             >
               Al-Kahf
@@ -83,8 +79,7 @@ export default function Quran() {
             <button
               className="bg-primary text-white px-4 py-2 rounded-full hover:bg-tertiary transition-colors duration-300 whitespace-nowrap"
               onClick={() => {
-                dispatch(getDetailSurah("55"));
-                navigate("/baca-surat/Ar-Rahman");
+                navigate("/baca-surat/55");
               }}
             >
               Ar-Rahman
