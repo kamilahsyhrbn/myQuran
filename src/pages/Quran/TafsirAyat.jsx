@@ -67,7 +67,7 @@ export default function TafsirAyat() {
         </div>
       ) : (
         <>
-          {tafsirAyat.length === 0 ? (
+          {tafsirAyat && tafsirAyat.length === 0 ? (
             <div className="flex justify-center items-center h-screen">
               <h1 className="text-4xl font-bold text-primary">
                 Tafsir tidak ditemukan
