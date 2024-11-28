@@ -18,7 +18,7 @@ export default function SearchInput({
   const navigate = useNavigate();
 
   useEffect(() => {
-    const selected = quran.find((surat) => surat?.nomor === value);
+    const selected = quran?.find((surat) => surat?.nomor === value);
     setSelectedSurah(selected || null);
     setQuery(selected ? `${selected.namaLatin}` : "");
   }, [value, quran]);
@@ -34,8 +34,8 @@ export default function SearchInput({
   const filteredItems =
     query === ""
       ? quran
-      : quran.filter((surat) =>
-          surat?.namaLatin.toLowerCase().includes(query.toLowerCase())
+      : quran?.filter((surat) =>
+          surat?.namaLatin?.toLowerCase().includes(query.toLowerCase())
         );
 
   return (
