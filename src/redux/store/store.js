@@ -5,8 +5,8 @@ import storage from "redux-persist/lib/storage";
 
 import quranReducers from "../reducers/quranReducers";
 import asmaReducers from "../reducers/asmaReducers";
-import doaReducers from "../reducers/doaReducers";
 import haditsReducers from "../reducers/haditsReducers";
+import doaReducers from "../reducers/doaReducers";
 
 const rootReducer = combineReducers({
   quran: quranReducers,
