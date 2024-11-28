@@ -7,7 +7,7 @@ const initialState = {
   isLoading: false,
 };
 
-const doaSlicer = createSlice({
+const duaSlicer = createSlice({
   name: "doa",
   initialState,
   reducers: {
@@ -27,5 +27,5 @@ const doaSlicer = createSlice({
 });
 
 export const { setListDoa, setDoa, setSelectedDua, setIsLoading } =
-  doaSlicer.actions;
-export default doaSlicer.reducer;
+  duaSlicer.actions;
+export default duaSlicer.reducer;

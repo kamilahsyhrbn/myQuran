@@ -3,7 +3,7 @@ import Background from "../../assets/MosqueBG.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDoa } from "../../redux/actions/doaActions";
-import { setSelectedDua } from "../../redux/reducers/doaReducers";
+import { setSelectedDua } from "../../redux/reducers/duaReducers";
 
 export default function BacaDoa() {
   const navigate = useNavigate();
