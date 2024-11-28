@@ -25,7 +25,7 @@ export default function Quran() {
       style={{
         backgroundImage: `url(${Background})`,
       }}
-      className="w-full min-h-max bg-fixed"
+      className="w-full min-h-screen bg-cover bg-no-repeat bg-fixed"
     >
       <div className="py-20 px-4 md:px-10 lg:px-24">
         <h1 className="text-4xl font-bold text-primary arabic text-center">
@@ -89,35 +89,63 @@ export default function Quran() {
 
         {/* QURAN LIST */}
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
-          {quran?.map((surah) => (
-            <div
-              key={surah?.nomor}
-              className="group flex gap-5 md:items-center md:gap-2 md:flex-row justify-between w-full bg-white hover:bg-primary hover:text-white transition-all duration-300 p-6 rounded-md cursor-pointer hover:shadow-primary hover:shadow-md"
-              onClick={() => {
-                navigate(`/baca-surat/${surah?.nomor}`);
-              }}
-            >
-              <div className="flex gap-5">
-                <div className="bg-accent text-quaternary px-2 py-1 rounded-md h-max group-hover:bg-white group-hover:text-primary transition-all duration-300">
-                  <h5 className="font-semibold">{surah?.nomor}</h5>
-                </div>
+          {isLoading ? (
+            Array.from({ length: 24 }).map((_, index) => (
+              <div
+                key={index}
+                className="group flex gap-5 md:items-center md:gap-2 md:flex-row justify-between w-full bg-white p-6 rounded-md cursor-pointer"
+              >
+                <div className="max-w-sm animate-pulse flex flex-col gap-4 items-center">
+                  <div className="flex gap-5">
+                    <div class="h-10 bg-gray-300 rounded-md w-10"></div>
+                    <div className="flex flex-col gap-1">
+                      <div class="h-2.5 bg-gray-300 rounded-full w-24"></div>
+                      <div class="h-2.5 bg-gray-300 rounded-full w-24"></div>
+                    </div>
 
-                <div className="flex flex-col gap-1">
-                  <h3 className="font-bold">{surah?.namaLatin}</h3>
-                  <p className="text-quaternary text-sm group-hover:text-lightGray transition-all duration-300">
-                    {surah?.arti}
-                  </p>
+                    <div className="flex flex-col items-end gap-1">
+                      <div class="h-2.5 bg-gray-300 rounded-full w-24"></div>
+                      <div class="h-2.5 bg-gray-300 rounded-full w-24"></div>
+                    </div>
+                  </div>
+
+                  <span class="sr-only">Loading...</span>
                 </div>
               </div>
+            ))
+          ) : (
+            <>
+              {quran?.map((surah) => (
+                <div
+                  key={surah?.nomor}
+                  className="group flex gap-5 md:items-center md:gap-2 md:flex-row justify-between w-full bg-white hover:bg-primary hover:text-white transition-all duration-300 p-6 rounded-md cursor-pointer hover:shadow-primary hover:shadow-md"
+                  onClick={() => {
+                    navigate(`/baca-surat/${surah?.nomor}`);
+                  }}
+                >
+                  <div className="flex gap-5">
+                    <div className="bg-accent text-quaternary px-2 py-1 rounded-md h-max group-hover:bg-white group-hover:text-primary transition-all duration-300">
+                      <h5 className="font-semibold">{surah?.nomor}</h5>
+                    </div>
 
-              <div className="flex flex-col items-end">
-                <h3 className="font-bold arabic text-2xl">{surah?.nama}</h3>
-                <p className="text-quaternary text-sm group-hover:text-lightGray transition-all duration-300">
-                  {surah?.jumlahAyat} Ayat
-                </p>
-              </div>
-            </div>
-          ))}
+                    <div className="flex flex-col gap-1">
+                      <h3 className="font-bold">{surah?.namaLatin}</h3>
+                      <p className="text-quaternary text-sm group-hover:text-lightGray transition-all duration-300">
+                        {surah?.arti}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col items-end">
+                    <h3 className="font-bold arabic text-2xl">{surah?.nama}</h3>
+                    <p className="text-quaternary text-sm group-hover:text-lightGray transition-all duration-300">
+                      {surah?.jumlahAyat} Ayat
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
         </section>
       </div>
     </div>

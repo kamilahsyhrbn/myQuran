@@ -10,6 +10,7 @@ import BacaDoa from "./pages/Doa/BacaDoa";
 import Hadits from "./pages/Hadits/Hadits";
 import AutoTop from "./utils/autoTop";
 import TafsirAyat from "./pages/Quran/TafsirAyat";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/doa" element={<Doa />} />
         <Route path="/baca-doa/:doa" element={<BacaDoa />} />
         <Route path="/hadits" element={<Hadits />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <BtnScrollUp />
       <Footer />
