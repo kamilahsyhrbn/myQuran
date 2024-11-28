@@ -8,14 +8,21 @@ import AsmaulHusna from "./pages/Asmaul Husna/AsmaulHusna";
 import Doa from "./pages/Doa/Doa";
 import BacaDoa from "./pages/Doa/BacaDoa";
 import Hadits from "./pages/Hadits/Hadits";
+import AutoTop from "./utils/autoTop";
+import TafsirAyat from "./pages/Quran/TafsirAyat";
 
 function App() {
   return (
     <Router>
       <Navbar />
+      <AutoTop />
       <Routes>
         <Route path="/" element={<Quran />} />
-        <Route path="/baca-surat/:name_id" element={<BacaSurat />} />
+        <Route path="/baca-surat/:nomor" element={<BacaSurat />} />
+        <Route
+          path="/tafsir-ayat/:nomorSurat/:nomorAyat"
+          element={<TafsirAyat />}
+        />
         <Route path="/asmaul-husna" element={<AsmaulHusna />} />
         <Route path="/doa" element={<Doa />} />
         <Route path="/baca-doa/:doa" element={<BacaDoa />} />

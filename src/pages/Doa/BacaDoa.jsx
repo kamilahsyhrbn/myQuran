@@ -11,7 +11,6 @@ export default function BacaDoa() {
 
   const selectedDoa = useParams();
   const { doa, selectedDua, isLoading } = useSelector((state) => state.doa);
-  console.log("selectedDua", selectedDua);
   const [showModal, setShowModal] = useState(false);
 
   const handleModal = () => {
@@ -20,6 +19,7 @@ export default function BacaDoa() {
 
   useEffect(() => {
     dispatch(setSelectedDua([]));
+    dispatch(getDoa(selectedDoa?.doa));
   }, []);
 
   return (
@@ -94,7 +94,7 @@ export default function BacaDoa() {
                 </button>
               </div>
 
-              <div className="p-4 md:p-5 space-y-4">
+              <div className="p-4 md:p-5 space-y-4 overflow-y-auto max-h-[70vh]">
                 <p className="text-2xl leading-[3rem] arabic" dir="rtl">
                   {doa?.arab}
                 </p>

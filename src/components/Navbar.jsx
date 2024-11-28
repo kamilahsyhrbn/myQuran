@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../assets/Quran1.png";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,15 +36,15 @@ export default function Navbar() {
         ${isScrolled || isOpen ? "bg-accent shadow-md" : "bg-transparent"}`}
     >
       <div className=" flex flex-wrap items-center justify-between mx-3 md:mx-8 p-4">
-        <a
-          href="/"
+        <Link
+          to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse flex-1"
         >
           <img src={Logo} className="h-10" alt="MyQuran Logo" />
           <span className="self-center text-3xl font-extrabold whitespace-nowrap text-tertiary arabic">
             MyQuran
           </span>
-        </a>
+        </Link>
 
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <button
@@ -80,8 +81,8 @@ export default function Navbar() {
         >
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
             <li>
-              <a
-                href="/"
+              <Link
+                to="/"
                 className={`block py-2 px-3 rounded md:p-0 ${
                   location.pathname === "/"
                     ? "text-white bg-primary md:bg-transparent md:text-primary font-semibold"
@@ -89,11 +90,11 @@ export default function Navbar() {
                 }`}
               >
                 Al-Quran
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/hadits"
+              <Link
+                to="/hadits"
                 className={`block py-2 px-3 rounded md:p-0 ${
                   location.pathname === "/hadits"
                     ? "text-white bg-primary md:bg-transparent md:text-primary font-semibold"
@@ -101,11 +102,11 @@ export default function Navbar() {
                 }`}
               >
                 Hadits
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/doa"
+              <Link
+                to="/doa"
                 className={`block py-2 px-3 rounded md:p-0 ${
                   location.pathname === "/doa" ||
                   location.pathname === "/baca-doa/:doa"
@@ -114,11 +115,11 @@ export default function Navbar() {
                 }`}
               >
                 Doa
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/asmaul-husna"
+              <Link
+                to="/asmaul-husna"
                 className={`block py-2 px-3 rounded md:p-0 ${
                   location.pathname === "/asmaul-husna"
                     ? "text-white bg-primary md:bg-transparent md:text-primary font-semibold"
@@ -126,7 +127,7 @@ export default function Navbar() {
                 }`}
               >
                 Asmaul Husna
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

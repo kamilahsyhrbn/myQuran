@@ -28,7 +28,7 @@ export default function SearchInput({
     setQuery(surat ? `${surat.namaLatin}` : "");
     onChange(surat);
     dispatch(getSurah(surat?.nomor));
-    navigate(`/baca-surat/${surat.namaLatin}`);
+    navigate(`/baca-surat/${surat.nomor}`);
   };
 
   const filteredItems =

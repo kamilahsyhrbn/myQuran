@@ -11,6 +11,7 @@
 
 body {
   background-color: #e9e6d7;
+  overscroll-behavior: none;
 }
 
 .arabic {

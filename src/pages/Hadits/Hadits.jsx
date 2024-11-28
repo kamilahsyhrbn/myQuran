@@ -94,7 +94,7 @@ export default function Hadits() {
                 </button>
               </div>
 
-              <div className="p-4 md:p-5 space-y-4">
+              <div className="p-4 md:p-5 space-y-4 overflow-y-auto max-h-[70vh]">
                 <p className="text-2xl leading-[3rem] arabic" dir="rtl">
                   {hadits?.arab}
                 </p>
